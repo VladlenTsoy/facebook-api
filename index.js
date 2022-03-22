@@ -22,6 +22,7 @@
 // Use dotenv to read .env vars into Node
 require('dotenv').config();
 
+console.log(process.env.FACEBOOK_VERIFY_TOKEN)
 // Imports dependencies and set up http server
 const
     request = require('request'),
@@ -44,7 +45,7 @@ app.get('/', function (_req, res) {
 app.get('/webhook', (req, res) => {
 
     // Your verify token. Should be a random string.
-    const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
+    const VERIFY_TOKEN = process.env.FACEBOOK_VERIFY_TOKEN;
 
     // Parse the query params
     let mode = req.query['hub.mode'];
@@ -171,7 +172,7 @@ function handlePostback(senderPsid, receivedPostback) {
 function callSendAPI(senderPsid, response) {
 
     // The page access token we have generated in your app settings
-    const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
+    const PAGE_ACCESS_TOKEN = process.env.FACEBOOK_PAGE_ACCESS_TOKEN;
 
     // Construct the message body
     let requestBody = {
